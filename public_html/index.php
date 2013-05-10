@@ -25,7 +25,7 @@ session_start();
 error_reporting(E_ALL);
 
 define('PUBLIC_PATH', getcwd());
-define('ROOT_PATH', PUBLIC_PATH.'\..');
+define('ROOT_PATH', PUBLIC_PATH.'/..');
 
 set_include_path(PUBLIC_PATH);
 

@@ -73,7 +73,7 @@ class bootstrap {
 		include_once('../library/base/Base_Functions.php');
 		include_once('../library/base/Base_Controller.php');
 		
-		if (is_readable(dirname(__FILE__).'/controller/'.$this->getVars['controller'].'Controller.php')) {
+		if (is_readable(ROOT_PATH.'/application/controller/'.$this->getVars['controller'].'Controller.php')) {
 			include('../application/controller/'.$this->getVars['controller'].'Controller.php');
 			$error = false;
 		}

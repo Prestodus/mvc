@@ -16,7 +16,8 @@ class view extends Base_Functions {
 	
 	public function __render($part = null) {
 		
-		$viewfolder = '../application/view/';
+		$viewfolder = ROOT_PATH.'/application/view/';
+		
 		if ($part == null) {
 		
 			if (!isset($this->view->title)) $this->view->title = '';
