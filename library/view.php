@@ -1,66 +1,70 @@
 <?php
 
-class view {
+class view extends Base_Functions {
 	
-	public $arr = array();
-	public $file;
+	public $view;
+	public $action;
+	public $controller;
 	
-	public function __construct($file) {
+	public function __construct($object, $controller, $action) {
 		
-		$this->file = $file;
+		$this->view = $object->view;
+		$this->controller = $controller;
+		$this->action = $action;
 		
 	}
 	
-	protected function get_sub_views($obj) {
+	public function __render($part = null) {
 		
-		foreach ($obj as $varname => $varvalue) {
+		$viewfolder = '../application/view/';
+		if ($part == null) {
+		
+			if (!isset($this->view->title)) $this->view->title = '';
+			if (!isset($this->view->styles)) $this->view->styles = '';
+			if (!isset($this->view->scripts)) $this->view->scripts = '';
 			
-			if ($varvalue instanceof view) {
-				$obj->arr[$varname] = $varvalue->get_sub_views($varvalue);
-			} else {
-				$obj->arr[$varname] = $varvalue;
+			foreach ($this->view as $key => $value) {
+				$this->$key = $value;
 			}
 			
+			include_once($viewfolder.'layout/index.phtml');
+			
+		} elseif ($part == 'content') {
+			
+			$this->action = str_replace('_', '/', $this->action);
+			if (file_exists($viewfolder.'scripts/'.$this->controller.'/'.$this->action.'.phtml')) {
+				
+				include_once($viewfolder.'scripts/'.$this->controller.'/'.$this->action.'.phtml');
+				
+			}
+			else {
+			
+				echo 'De view \''.$this->action.'.phtml\' bestaat niet.';
+				
+			}
+		
 		}
-		extract($obj->arr);
+		else {
+			
+			if (file_exists($viewfolder.''.$part.'.phtml')) {
+			
+				include_once($viewfolder.''.$part.'.phtml');
+				
+			} else {
+			
+				echo 'De view \''.$part.'.phtml\' bestaat niet.';
+				
+			}
 		
-		ob_start();
-			if (file_exists(dirname(__FILE__).'/../application/view/scripts/'.$obj->file)) {
-				
-				if (!isset($this->title)) $this->title = "";
-				if (!isset($this->scripts)) $this->scripts = "";
-				if (!isset($this->styles)) $this->styles = "";
-				include('/../application/view/scripts/'.$obj->file);
-				
-			}
-			else {
-				
-				throw new Exception('The view file '.dirname(__FILE__).'/../application/view/scripts/'.$obj->file.' is not available');
-				
-			}
-		$this->content = ob_get_clean();
+		}
 		
-		ob_start();
-			if (file_exists(dirname(__FILE__).'/../application/view/scripts/'.$obj->file)) {
-				
-				include('/../application/view/layout/index.phtml');
-				
-			}
-			else {
-				
-				throw new Exception('The view file '.dirname(__FILE__).'/../application/view/scripts/'.$obj->file.' is not available');
-				
-			}
-		$html = ob_get_clean();
-		
-		return $html;
+		return $this;
 		
 	}
 	
-	public function render() {
-		
-		echo self::get_sub_views($this);
-		
+	public function thisPage($controller, $action) {
+		if ($this->controller == $controller && $this->action == $action) return true;
+		else return false;
 	}
 	
 }

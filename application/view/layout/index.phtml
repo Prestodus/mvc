@@ -3,17 +3,82 @@
 
 <head>
 
-	<title><?php echo $this->view->title ?></title>
-
-	<?php echo $this->view->styles ?>
+	<title><?php echo $this->title ?></title>
 	
-	<?php echo $this->view->scripts ?>
+	<link rel="stylesheet" href="/css/style.css" />
+	
+	<link rel="stylesheet" href="/css/nivo-slider.css" />
+
+	<?php echo $this->styles ?>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	ga('create', 'UA-40836429-1', 'floristhijs.be');
+	ga('send', 'pageview');
+	</script>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<script src="/scripts/jquery.nivo.slider.js"></script>
+	
+	<script src="/scripts/jquery.hcaptions.js"></script>
+	
+	<?php echo $this->scripts ?>
 
 </head>
 
 <body>
 
-<?php $this->__render('content') ?>
+<div id="social">
+
+	<div id="facebook"><a href="#"><img src="/graphics/layout/toplogos/facebook.png" /></a></div>
+	<div id="email"><a href="#"><img src="/graphics/layout/toplogos/email.png" /></a></div>
+	<div id="vimeo"><a href="#"><img src="/graphics/layout/toplogos/vimeo.png" /></a></div>
+	<div id="linkedin"><a href="#"><img src="/graphics/layout/toplogos/linkedin.png" /></a></div>
+	<div class="clear"></div>
+
+</div>
+
+<div id="page_container">
+
+	<div id="page_header">
+	
+		<div id="page_header_body">
+		
+			<a href="/"><img id="page_header_body_title" src="/graphics/layout/header_title.png" /></a>
+			<img id="page_header_body_right" src="/graphics/layout/header_right.png" />
+		
+		</div>
+	
+	</div>
+	<div id="page_middle">
+	
+		
+	
+	</div>
+	<div id="content_container">
+		<div class="tab <?php if ($this->thisPage('index', 'index')): ?>tab_left_active<?php else: ?>tab_left_nonactive<?php endif; ?>" id="tab_left"><a style="display: block;" href="<?php echo $this->createUrl() ?>">Home</a></div>
+		<div class="tab <?php if ($this->thisPage('index', 'portfolio')): ?>tab_middle_active<?php else: ?>tab_middle_nonactive<?php endif; ?>" id="tab_middle"><a style="display: block;" href="<?php echo $this->createUrl('index', 'portfolio') ?>">Portfolio</a></div>
+		<div class="tab <?php if ($this->thisPage('index', 'contact')): ?>tab_right_active<?php else: ?>tab_right_nonactive<?php endif; ?>" id="tab_right"><a style="display: block;" href="<?php echo $this->createUrl('index', 'contact') ?>">Contact</a></div>
+		<div class="clear"></div>
+		<div id="content_body">
+
+			<?php $this->__render('content') ?>
+		
+		</div>
+	
+	</div>
+	<div id="footer">
+	
+		&copy; Copyright 2013 Floris Thijs &nbsp; | &nbsp; Design and coding by <a href="mailto:rubencoolen@live.be">Ruben Coolen</a>
+	
+	</div>
+
+</div>
 
 </body>
 

@@ -24,4 +24,12 @@ function dump($var, $exit = null) {
 session_start();
 error_reporting(E_ALL);
 
+define('PUBLIC_PATH', getcwd());
+define('ROOT_PATH', PUBLIC_PATH.'\..');
+
+set_include_path(PUBLIC_PATH);
+
 include('../application/bootstrap.php');
+
+$bootstrap = new bootstrap();
+$bootstrap->initializePage();

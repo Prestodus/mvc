@@ -1,0 +1,18 @@
+<form method="get" action="/getset/index/">
+	Aantal:<br />
+	<select name="number">
+		<?php for ($i=1; $i<=40; $i++): ?>
+			<option value="<?php echo $i ?>"><?php echo $i ?> variabelen</option>
+		<?php endfor; ?>
+	</select><br />
+	<input type="submit" />
+</form>
+
+
+<?php if (!isset($_GET['number']) || !is_numeric($_GET['number']))  $_GET['number'] = 1; ?>
+<form method="post" action="/getset/output/">
+	<?php for ($i=1; $i<=$_GET['number']; $i++): ?>
+		<input type="text" name="var[<?php echo $i ?>]" /><input type="checkbox" name="int<?php echo $i ?>" id="int[<?php echo $i ?>]" value="int" /><label for="int[<?php echo $i ?>]">int</label><br />
+	<?php endfor; ?>
+	<input type="submit" />
+</form>

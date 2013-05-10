@@ -1,5 +1,9 @@
 <?php
 
+function __autoload($class_name) {
+	$inc = new autoload($class_name);
+}
+
 class autoload {
 	
 	public function __construct($class) {
@@ -21,7 +25,7 @@ class autoload {
 
 		if(strstr($class, 'Controller')) {
 			
-			die('Class '.$class.' could not be loaded by the autoloader');
+			return false;
 			
 		}
 		
