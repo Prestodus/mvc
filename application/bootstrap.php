@@ -1,25 +1,17 @@
 <?php
 
-class bootstrap {
+include_once('../library/config.php');
+
+class bootstrap extends config {
 	
 	public $config;
 	public $getVars;
 	public $postVars;
-	public $dbh;
 	
 	public function __construct() {
-		$this->config = parse_ini_file('../application/configs/config.ini', true);
-		/*try {
-			$this->dbh = new PDO('mysql:host='.$this->config['db']['host'].';dbname='.$this->config['db']['name'], $this->config['db']['username'], $this->config['db']['password']);
-		}
-		catch(PDOException $e) {
-			die($e);
-		}*/ $this->dbh = 0;
+		//$this->config = parse_ini_file('../application/configs/config.ini', true);
+		$this->config = $this->setConfig();
 		$this->getVars()->postVars();
-	}
-
-	public function dbConn() {
-		return $this->dbh;
 	}
 
 	public function getVars() {
@@ -55,6 +47,10 @@ class bootstrap {
 	public function postVars() {
 		foreach ($_POST as $key => $value) {
 			$this->postVars[$key] = $value;
+		}
+		
+		if (!is_array($this->postVars)) {
+			$this->postVars = array();
 		}
 		
 		return $this;

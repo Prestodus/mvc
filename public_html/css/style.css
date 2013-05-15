@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	padding-bottom: 30px;
 	font-family: Arial, Tahoma, 'Century gothic', sans-serif;
 	background: url(/graphics/layout/body_background.png) repeat;
     font-size: 62.5%;
@@ -18,6 +19,11 @@ body {
 	margin-top: -72px;
 	transition: 1s ease;
 	-webkit-transition: 0.7s ease;
+	float: left;
+}
+
+.touch #social {
+	margin-top: 0px;
 	float: left;
 }
 
@@ -166,12 +172,30 @@ body {
 	padding-right: 4%;
 }
 
+.divider {
+	margin-left: 0px auto;
+	margin-top: 40px;
+	margin-bottom: 30px;
+	height: 3px;
+	background: url(/graphics/layout/divider.png) no-repeat center center;
+}
+
 #footer {
-	width: 980px;
-	margin: 0px auto;
-	margin-top: 30px;
+	width: 100%;
+	margin-left: 0px auto;
 	text-align: center;
-	font-size: 1.6em;
+}
+
+#footer .left {
+	width: 48%;
+	float: left;
+	text-align: right;
+}
+
+#footer .right {
+	width: 48%;
+	float: right;
+	text-align: left;
 }
 
 

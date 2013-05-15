@@ -5,11 +5,21 @@
 
 	<title><?php echo $this->title ?></title>
 	
+	<link rel="shortcut icon" type="image/x-icon" href="/graphics/layout/favicon.ico" />
+	
 	<link rel="stylesheet" href="/css/style.css" />
 	
 	<link rel="stylesheet" href="/css/nivo-slider.css" />
 
 	<?php echo $this->styles ?>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<script src="/scripts/jquery.nivo.slider.js"></script>
+	
+	<script src="/scripts/modernizr.js"></script>
+	
+	<?php echo $this->scripts ?>
 	
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
@@ -19,15 +29,11 @@
 	
 	ga('create', 'UA-40836429-1', 'floristhijs.be');
 	ga('send', 'pageview');
+	
+	if ( Modernizr.hasEvent('deviceOrientation') ) {
+		document.documentElement.className += " touch";
+	}
 	</script>
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	
-	<script src="/scripts/jquery.nivo.slider.js"></script>
-	
-	<script src="/scripts/jquery.hcaptions.js"></script>
-	
-	<?php echo $this->scripts ?>
 
 </head>
 
@@ -61,20 +67,14 @@
 	
 	</div>
 	<div id="content_container">
-		<div class="tab <?php if ($this->thisPage('index', 'index')): ?>tab_left_active<?php else: ?>tab_left_nonactive<?php endif; ?>" id="tab_left"><a style="display: block;" href="<?php echo $this->createUrl() ?>">Home</a></div>
-		<div class="tab <?php if ($this->thisPage('index', 'portfolio')): ?>tab_middle_active<?php else: ?>tab_middle_nonactive<?php endif; ?>" id="tab_middle"><a style="display: block;" href="<?php echo $this->createUrl('index', 'portfolio') ?>">Portfolio</a></div>
-		<div class="tab <?php if ($this->thisPage('index', 'contact')): ?>tab_right_active<?php else: ?>tab_right_nonactive<?php endif; ?>" id="tab_right"><a style="display: block;" href="<?php echo $this->createUrl('index', 'contact') ?>">Contact</a></div>
-		<div class="clear"></div>
+		<?php $this->__render('layout/menu') ?>
 		<div id="content_body">
 
 			<?php $this->__render('content') ?>
+			
+			<?php $this->__render('layout/footer') ?>
 		
 		</div>
-	
-	</div>
-	<div id="footer">
-	
-		&copy; Copyright 2013 Floris Thijs &nbsp; | &nbsp; Design and coding by <a href="mailto:rubencoolen@live.be">Ruben Coolen</a>
 	
 	</div>
 

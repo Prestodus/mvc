@@ -2,8 +2,8 @@
 
 class Base_Controller extends Base_Functions {
 	
-	public $postVars;
-	public $getVars;
+	public $postVars = array();
+	public $getVars = array();
 	
 	public function _init($getVars, $postVars) {
 		$this->view = new stdClass();
