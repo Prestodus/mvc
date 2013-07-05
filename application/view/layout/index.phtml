@@ -19,6 +19,8 @@
 	
 	<script src="/scripts/modernizr.js"></script>
 	
+	<script src="http://cssrefresh.frebsite.nl/js/cssrefresh.js"></script>
+	
 	<?php echo $this->scripts ?>
 	
 	<script>
@@ -29,10 +31,6 @@
 	
 	ga('create', 'UA-40836429-1', 'floristhijs.be');
 	ga('send', 'pageview');
-	
-	if ( Modernizr.hasEvent('deviceOrientation') ) {
-		document.documentElement.className += " touch";
-	}
 	</script>
 
 </head>
@@ -41,10 +39,10 @@
 
 <div id="social">
 
-	<div id="facebook"><a href="https://www.facebook.com/floris.thijs" target="_blank"><img src="/graphics/layout/toplogos/facebook.png" /></a></div>
-	<div id="email"><a href="<?php echo $this->createUrl('index', 'contact') ?>"><img src="/graphics/layout/toplogos/email.png" /></a></div>
-	<div id="vimeo"><a href="#"><img src="/graphics/layout/toplogos/vimeo.png" /></a></div>
-	<div id="linkedin"><a href="#"><img src="/graphics/layout/toplogos/linkedin.png" /></a></div>
+	<div id="email" title="Go to my contact page"><a href="<?php echo $this->createUrl('index', 'contact') ?>"><img src="/graphics/layout/toplogos/email.png" /></a></div>
+	<div id="vimeo" title="Check out my videos on Vimeo"><a href="#"><img src="/graphics/layout/toplogos/vimeo.png" /></a></div>
+	<div id="facebook" title="Stalk me on Facebook"><a href="https://www.facebook.com/floris.thijs" target="_blank"><img src="/graphics/layout/toplogos/facebook.png" /></a></div>
+	<div id="linkedin" title="Visit my LinkedIn"><a href="#"><img src="/graphics/layout/toplogos/linkedin.png" /></a></div>
 	<div class="clear"></div>
 
 </div>

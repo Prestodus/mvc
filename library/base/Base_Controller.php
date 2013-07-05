@@ -4,11 +4,13 @@ class Base_Controller extends Base_Functions {
 	
 	public $postVars = array();
 	public $getVars = array();
+	public $config;	
 	
-	public function _init($getVars, $postVars) {
+	public function _init($getVars, $postVars, $config) {
 		$this->view = new stdClass();
 		$this->getVars = $getVars;
 		$this->postVars = $postVars;
+		$this->config = $config;
 	}
 	
 	public function getVars() {

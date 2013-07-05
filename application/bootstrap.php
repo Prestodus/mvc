@@ -56,10 +56,6 @@ class bootstrap extends config {
 		return $this;
 	}
 	
-	public function getWebPath() {
-		return $this->config['website']['path'];
-	}
-	
 	public function getConfig() {
 		return $this->config;
 	}
@@ -84,7 +80,7 @@ class bootstrap extends config {
 			try {
 				if (class_exists($controller)) {
 					$dispatch = new $controller;
-					$dispatch->_init($this->getVars, $this->postVars);
+					$dispatch->_init($this->getVars, $this->postVars, $this->getConfig());
 				}
 				else {
 					throw new Exception("An error has ocurred. The controller has not been found.");
@@ -105,7 +101,7 @@ class bootstrap extends config {
 		if ($error) {
 			include('../application/controller/error404Controller.php');
 			$dispatch = new error404Controller();
-			$dispatch->_init($this->getVars, $this->postVars);
+			$dispatch->_init($this->getVars, $this->postVars, $this->getConfig());
 			$object = call_user_func_array(array($dispatch, 'error404Action'), $this->getVars);
 			$view = new view($object, 'errors', 'error404');
 			$view->__render();
