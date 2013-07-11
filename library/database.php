@@ -16,4 +16,4 @@ class database extends config {
 		return $this->dbh;
 	}
 	
-}
+}rzqr
